@@ -15,7 +15,7 @@ namespace CadastroMoveis {
 
         public static void listarProdutos() {
             Console.WriteLine("LISTAGEM DE PRODUTOS:");
-            for(int i = 0; i < Program.produtos.Count; i++) {
+            for (int i = 0; i < Program.produtos.Count; i++) {
                 Console.WriteLine(Program.produtos[i]);
             }
         }
@@ -25,7 +25,7 @@ namespace CadastroMoveis {
             Console.Write("Código: ");
             int codigo = int.Parse(Console.ReadLine());
             int pos = Program.produtos.FindIndex(x => x.codigo == codigo);
-            if(pos != -1) {
+            if (pos != -1) {
                 throw new ModelException("Código do produto já cadastrado: " + codigo);
             }
             Console.Write("Descrição: ");
@@ -34,6 +34,40 @@ namespace CadastroMoveis {
             double preco = Double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Program.produtos.Add(new Produto(codigo, descricao, preco));
             Program.produtos.Sort();
+        }
+
+        public static void cadastrarPedido() {
+            Console.WriteLine("Digite os dados do pedido:");
+            Console.Write("Código: ");
+            int codigoPedido = int.Parse(Console.ReadLine());
+            int pos = Program.pedidos.FindIndex(x => x.codigo == codigoPedido);
+            if (pos != -1) {
+                throw new ModelException("Código do pedido já cadastrado: " + codigoPedido);
+            }
+            Console.Write("Dia: ");
+            int dia = int.Parse(Console.ReadLine());
+            Console.Write("Mês: ");
+            int mes = int.Parse(Console.ReadLine());
+            Console.Write("Ano: ");
+            int ano = int.Parse(Console.ReadLine());
+            Program.pedidos.Add(new Pedido(codigoPedido, dia, mes, ano));
+            Console.Write("Quantos itens tem o pedido: ");
+            int quantidadeItens = int.Parse(Console.ReadLine());
+            for (int i = 0; i < quantidadeItens; i++) {
+                Console.WriteLine("Digite os dados do " + (i + 1) + "º item:");
+                Console.Write("Produto (código): ");
+                int codigoProduto = int.Parse(Console.ReadLine());
+                int posicaoPedido = Program.itensPedido.FindIndex(x => x.codigoPedido == codigoPedido);
+                int posicaoProduto = Program.itensPedido.FindIndex(x => x.codigoProduto == codigoProduto);
+                if(posicaoPedido != -1 && posicaoProduto != -1) {
+                    throw new ModelException("Produto duplicado no pedido: " + codigoProduto);
+                }
+                Console.Write("Quantidade: ");
+                int quantidadeProdutos = int.Parse(Console.ReadLine());
+                Console.Write("Porcentagem de desconto: ");
+                double porcentagemDesconto = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                Program.itensPedido.Add(new ItemPedido(codigoProduto, codigoPedido, quantidadeProdutos, porcentagemDesconto));
+            }
         }
 
     }

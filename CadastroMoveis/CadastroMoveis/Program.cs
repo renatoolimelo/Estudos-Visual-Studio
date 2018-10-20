@@ -5,6 +5,8 @@ namespace CadastroMoveis {
     class Program {
 
         public static List<Produto> produtos = new List<Produto>();
+        public static List<Pedido> pedidos = new List<Pedido>();
+        public static List<ItemPedido> itensPedido = new List<ItemPedido>();
 
         static void Main(string[] args) {
 
@@ -47,6 +49,16 @@ namespace CadastroMoveis {
                         break;
 
                     case 3:
+                        try {
+                            Tela.cadastrarPedido();
+                        }
+                        catch (ModelException e) {
+                            Console.WriteLine("Erro de négocio: " + e.Message);
+                        }
+                        catch (Exception e) {
+                            Console.WriteLine("Erro inesperado: " + e.Message);
+                        }
+
                         break;
                     case 4:
                         break;
@@ -56,7 +68,7 @@ namespace CadastroMoveis {
                         break;
 
                     default:
-                        Console.WriteLine("Opção inválida: ");
+                        Console.WriteLine("Opção inválida");
                         break;
                 }
 
