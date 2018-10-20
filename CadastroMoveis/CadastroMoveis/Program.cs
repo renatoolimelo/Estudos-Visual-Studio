@@ -17,22 +17,35 @@ namespace CadastroMoveis {
 
             int opcao = 0;
 
-            while(opcao != 5) {
+            while (opcao != 5) {
                 Console.Clear();
                 Tela.menu();
                 try {
                     opcao = int.Parse(Console.ReadLine());
-                }catch (Exception e) {
+                }
+                catch (Exception e) {
                     Console.WriteLine("Erro inesperado: " + e.Message);
                     opcao = 0;
                 }
 
                 switch (opcao) {
+
                     case 1:
                         Tela.listarProdutos();
                         break;
+
                     case 2:
+                        try {
+                            Tela.cadastrarProduto();
+                        }
+                        catch (ModelException e) {
+                            Console.WriteLine("Erro de négocio: " + e.Message);
+                        }
+                        catch (Exception e) {
+                            Console.WriteLine("Erro inesperado: " + e.Message);
+                        }
                         break;
+
                     case 3:
                         break;
                     case 4:
@@ -43,7 +56,7 @@ namespace CadastroMoveis {
                         break;
 
                     default:
-                        Console.WriteLine("Opção inválida: " + opcao);
+                        Console.WriteLine("Opção inválida: ");
                         break;
                 }
 

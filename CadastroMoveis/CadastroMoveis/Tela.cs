@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace CadastroMoveis {
     class Tela {
@@ -17,6 +18,22 @@ namespace CadastroMoveis {
             for(int i = 0; i < Program.produtos.Count; i++) {
                 Console.WriteLine(Program.produtos[i]);
             }
+        }
+
+        public static void cadastrarProduto() {
+            Console.WriteLine("Digite os dados do produto: ");
+            Console.Write("Código: ");
+            int codigo = int.Parse(Console.ReadLine());
+            int pos = Program.produtos.FindIndex(x => x.codigo == codigo);
+            if(pos != -1) {
+                throw new ModelException("Código do produto já cadastrado: " + codigo);
+            }
+            Console.Write("Descrição: ");
+            string descricao = Console.ReadLine();
+            Console.Write("Preço: ");
+            double preco = Double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Program.produtos.Add(new Produto(codigo, descricao, preco));
+            Program.produtos.Sort();
         }
 
     }
