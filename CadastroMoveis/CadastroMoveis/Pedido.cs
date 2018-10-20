@@ -10,5 +10,13 @@ namespace CadastroMoveis {
             this.codigo = codigo;
             this.data = new DateTime(ano, mes, dia);
         }
+
+        public override string ToString() {
+            return "Pedido "
+                + codigo
+                + ", data: "
+                + data.Day + "/" + data.Month + "/" + data.Year;
+        }
+
     }
 }

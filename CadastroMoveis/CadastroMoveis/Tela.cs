@@ -70,5 +70,18 @@ namespace CadastroMoveis {
             }
         }
 
+        public static void mostrarPedido() {
+            Console.Write("Digite o código do pedido: ");
+            int codigoPedido = int.Parse(Console.ReadLine());
+            int pos = Program.pedidos.FindIndex(x => x.codigo == codigoPedido);
+            if(pos == -1) {
+                throw new ModelException("Codigo não possui pedido cadastrado " + codigoPedido);
+            }
+            Console.WriteLine(Program.pedidos[pos]);
+            Console.WriteLine("Itens: ");
+            Console.WriteLine(Program.itensPedido[pos]);
+
+        }
+
     }
 }

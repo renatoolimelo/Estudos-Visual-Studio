@@ -17,6 +17,11 @@ namespace CadastroMoveis {
             produtos.Add(new Produto(1005, "Mesa retangular", 2000.00));
             produtos.Sort();
 
+            pedidos.Add(new Pedido(101, 25, 8, 2017));
+
+            itensPedido.Add(new ItemPedido(1005, 101, 1, 5));
+            itensPedido.Add(new ItemPedido(1001, 101, 4, 10));
+
             int opcao = 0;
 
             while (opcao != 5) {
@@ -60,7 +65,17 @@ namespace CadastroMoveis {
                         }
 
                         break;
+
                     case 4:
+                        try {
+                            Tela.mostrarPedido();
+                        }
+                        catch (ModelException e) {
+                            Console.WriteLine("Erro de négocio: " + e.Message);
+                        }
+                        catch (Exception e) {
+                            Console.WriteLine("Erro inesperado: " + e.Message);
+                        }
                         break;
 
                     case 5:
