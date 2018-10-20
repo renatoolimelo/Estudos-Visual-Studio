@@ -12,5 +12,12 @@ namespace CadastroMoveis {
             Console.WriteLine();
         }
 
+        public static void listarProdutos() {
+            Console.WriteLine("LISTAGEM DE PRODUTOS:");
+            for(int i = 0; i < Program.produtos.Count; i++) {
+                Console.WriteLine(Program.produtos[i]);
+            }
+        }
+
     }
 }
