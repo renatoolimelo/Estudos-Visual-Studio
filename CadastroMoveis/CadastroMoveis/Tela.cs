@@ -57,10 +57,9 @@ namespace CadastroMoveis {
                 Console.WriteLine("Digite os dados do " + (i + 1) + "º item:");
                 Console.Write("Produto (código): ");
                 int codigoProduto = int.Parse(Console.ReadLine());
-                int posicaoPedido = Program.itensPedido.FindIndex(x => x.codigoPedido == codigoPedido);
-                int posicaoProduto = Program.itensPedido.FindIndex(x => x.codigoProduto == codigoProduto);
-                if(posicaoPedido != -1 && posicaoProduto != -1) {
-                    throw new ModelException("Produto duplicado no pedido: " + codigoProduto);
+                int posicaoProduto = Program.produtos.FindIndex(x => x.codigo == codigoProduto);
+                if (posicaoProduto == -1) {
+                    throw new ModelException("Produto não cadastrado: " + codigoProduto);
                 }
                 Console.Write("Quantidade: ");
                 int quantidadeProdutos = int.Parse(Console.ReadLine());
@@ -74,12 +73,23 @@ namespace CadastroMoveis {
             Console.Write("Digite o código do pedido: ");
             int codigoPedido = int.Parse(Console.ReadLine());
             int pos = Program.pedidos.FindIndex(x => x.codigo == codigoPedido);
-            if(pos == -1) {
+            if (pos == -1) {
                 throw new ModelException("Codigo não possui pedido cadastrado " + codigoPedido);
             }
             Console.WriteLine(Program.pedidos[pos]);
             Console.WriteLine("Itens: ");
-            Console.WriteLine(Program.itensPedido[pos]);
+            for (int i = 0; i < Program.itensPedido.Count; i++) {
+                if (Program.pedidos[pos].codigo == Program.itensPedido[i].codigoPedido) {
+                    for (int j = 0; j < Program.produtos.Count; j++) {
+                        if (Program.itensPedido[i].codigoProduto == Program.produtos[j].codigo) {
+                            Console.Write(Program.produtos[j].descricao
+                                + ", Preço: "
+                                + Program.produtos[j].preco);
+                        }
+                    }
+                    Console.WriteLine(Program.itensPedido[i]);
+                }
+            }
 
         }
 

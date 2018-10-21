@@ -18,9 +18,13 @@ namespace CadastroMoveis {
             produtos.Sort();
 
             pedidos.Add(new Pedido(101, 25, 8, 2017));
+            pedidos.Add(new Pedido(102, 30, 9, 2018));
 
             itensPedido.Add(new ItemPedido(1005, 101, 1, 5));
             itensPedido.Add(new ItemPedido(1001, 101, 4, 10));
+
+            itensPedido.Add(new ItemPedido(1002, 102, 2, 2));
+            itensPedido.Add(new ItemPedido(1003, 102, 3, 4));
 
             int opcao = 0;
 
