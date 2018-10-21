@@ -16,6 +16,15 @@ namespace CadastroFilme {
             artistas.Add(new Artista(104, "Morgan Freeman", 4000000.00));
             artistas.Sort();
 
+            filmes.Add(new Filme(1010, "Lucy", 2014));
+            filmes.Add(new Filme(2020, "Matrix", 2020));
+
+            participacoes.Add(new Participacao(500000.00, 1010, 101));
+            participacoes.Add(new Participacao(300000.00, 1010, 104));
+
+            participacoes.Add(new Participacao(400000.00, 2020, 102));
+            participacoes.Add(new Participacao(200000.00, 2020, 103));
+
             int opcao = 0;
 
             while (opcao != 5) {
@@ -62,6 +71,15 @@ namespace CadastroFilme {
                         break;
 
                     case 4:
+                        try {
+                            Tela.mostrarFilme();
+                        }
+                        catch (ModelException e) {
+                            Console.WriteLine("Erro de négocio: " + e.Message);
+                        }
+                        catch (Exception e) {
+                            Console.WriteLine("Erro inesperado: " + e.Message);
+                        }
                         break;
 
                     case 5:

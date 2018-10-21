@@ -73,5 +73,16 @@ namespace CadastroFilme {
             }
             Console.WriteLine("Cadastrado com sucesso");
         }
+
+        public static void mostrarFilme() {
+            Console.Write("Digite o código do filme: ");
+            int codigoFilme = int.Parse(Console.ReadLine());
+            int posFilme = Program.filmes.FindIndex(x => x.codigo == codigoFilme);
+            if (posFilme == -1) {
+                throw new ModelException("Filme não consta no cadastro: " + codigoFilme);
+            }
+            Console.WriteLine(Program.filmes[posFilme]);
+            Console.WriteLine("Participações:");
+        }
     }
 }

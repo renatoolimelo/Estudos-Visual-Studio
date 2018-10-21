@@ -9,5 +9,14 @@
             this.titulo = titulo;
             this.ano = ano;
         }
+
+        public override string ToString() {
+            return "Filme "
+                + codigo
+                + ", Título: "
+                + titulo
+                + ", Ano: "
+                + ano;
+        }
     }
 }
