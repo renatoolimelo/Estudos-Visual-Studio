@@ -8,6 +8,12 @@ namespace CadastroFilme {
 
         static void Main(string[] args) {
 
+            artistas.Add(new Artista(101, "Scarlett Johansson", 4000000.00));
+            artistas.Add(new Artista(102, "Chris Evans", 2500000.00));
+            artistas.Add(new Artista(103, "Robert Downey Jr.", 3000000.00));
+            artistas.Add(new Artista(104, "Morgan Freeman", 4000000.00));
+            artistas.Sort();
+
             int opcao = 0;
 
             while (opcao != 5) {
@@ -26,6 +32,7 @@ namespace CadastroFilme {
                 switch (opcao) {
 
                     case 1:
+                        Tela.listarArtista();
                         break;
 
                     case 2:

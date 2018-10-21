@@ -24,6 +24,16 @@ namespace CadastroFilme {
             Console.Write("Valor do cachê: ");
             double cache = Double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Program.artistas.Add(new Artista(codigo, nome, cache));
+            Console.WriteLine("Cadastrado com sucesso");
+            Program.artistas.Sort();
+        }
+
+        public static void listarArtista() {
+            Console.WriteLine("LISTAGEM DE ARTISTAS:");
+            for(int i = 0; i < Program.artistas.Count; i++) {
+                Console.WriteLine(Program.artistas[i]);
+            }
+            Console.WriteLine("Fim da lista");
         }
     }
 }
