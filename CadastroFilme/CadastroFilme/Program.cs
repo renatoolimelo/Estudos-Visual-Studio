@@ -5,6 +5,8 @@ namespace CadastroFilme {
     class Program {
 
         public static List<Artista> artistas = new List<Artista>();
+        public static List<Filme> filmes = new List<Filme>();
+        public static List<Participacao> participacoes = new List<Participacao>();
 
         static void Main(string[] args) {
 
@@ -39,12 +41,24 @@ namespace CadastroFilme {
                         try {
                             Tela.cadastrarArtista();
                         }
+                        catch (ModelException e) {
+                            Console.WriteLine("Erro de négocio: " + e.Message);
+                        }
                         catch (Exception e) {
                             Console.WriteLine("Erro inesperado: " + e.Message);
                         }
                         break;
 
                     case 3:
+                        try {
+                            Tela.cadastrarFilme();
+                        }
+                        catch (ModelException e) {
+                            Console.WriteLine("Erro de négocio: " + e.Message);
+                        }
+                        catch (Exception e) {
+                            Console.WriteLine("Erro inesperado: " + e.Message);
+                        }
                         break;
 
                     case 4:

@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Artista.cs" />
+    <Compile Include="Filme.cs" />
+    <Compile Include="ModelException.cs" />
+    <Compile Include="Participacao.cs" />
     <Compile Include="Tela.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

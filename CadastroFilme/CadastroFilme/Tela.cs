@@ -19,6 +19,10 @@ namespace CadastroFilme {
             Console.WriteLine("Digite os dados do artista:");
             Console.Write("Código: ");
             int codigo = int.Parse(Console.ReadLine());
+            int pos = Program.artistas.FindIndex(x => x.codigo == codigo);
+            if (pos != -1) {
+                throw new ModelException("Codigo já está cadastrado: " + codigo);
+            }
             Console.Write("Nome: ");
             string nome = Console.ReadLine();
             Console.Write("Valor do cachê: ");
@@ -30,10 +34,44 @@ namespace CadastroFilme {
 
         public static void listarArtista() {
             Console.WriteLine("LISTAGEM DE ARTISTAS:");
-            for(int i = 0; i < Program.artistas.Count; i++) {
+            for (int i = 0; i < Program.artistas.Count; i++) {
                 Console.WriteLine(Program.artistas[i]);
             }
             Console.WriteLine("Fim da lista");
+        }
+
+        public static void cadastrarFilme() {
+            Console.WriteLine("Digite os dados do filme: ");
+            Console.Write("Código: ");
+            int codigoFilme = int.Parse(Console.ReadLine());
+            int posFilme = Program.filmes.FindIndex(x => x.codigo == codigoFilme);
+            if (posFilme != -1) {
+                throw new ModelException("Código já está cadastrado: " + codigoFilme);
+            }
+            Console.Write("Título: ");
+            string titulo = Console.ReadLine();
+            Console.Write("Ano: ");
+            int ano = int.Parse(Console.ReadLine());
+            Console.Write("Quantas participações tem o filme: ");
+            int quantidade = int.Parse(Console.ReadLine());
+            int[] codigoArtista = new int[quantidade];
+            double[] desconto = new double[quantidade];
+            for (int i = 0; i < quantidade; i++) {
+                Console.WriteLine("Digite os dados da " + (i + 1) + "ª participação:");
+                Console.Write("Artista (código): ");
+                codigoArtista[i] = int.Parse(Console.ReadLine());
+                int posArtista = Program.artistas.FindIndex(x => x.codigo == codigoArtista[i]);
+                if (posArtista == -1) {
+                    throw new ModelException("Artista não consta no cadastro: " + codigoArtista[i]);
+                }
+                Console.Write("Desconto: ");
+                desconto[i] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            }
+            Program.filmes.Add(new Filme(codigoFilme, titulo, ano));
+            for (int i = 0; i < quantidade; i++) {
+                Program.participacoes.Add(new Participacao(desconto[i], codigoFilme, codigoArtista[i]));
+            }
+            Console.WriteLine("Cadastrado com sucesso");
         }
     }
 }
