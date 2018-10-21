@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CadastroFilme {
     class Program {
+
+        public static List<Artista> artistas = new List<Artista>();
+
         static void Main(string[] args) {
 
             int opcao = 0;
@@ -25,6 +29,12 @@ namespace CadastroFilme {
                         break;
 
                     case 2:
+                        try {
+                            Tela.cadastrarArtista();
+                        }
+                        catch (Exception e) {
+                            Console.WriteLine("Erro inesperado: " + e.Message);
+                        }
                         break;
 
                     case 3:
