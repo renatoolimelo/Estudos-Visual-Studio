@@ -19,8 +19,18 @@ namespace CadastroMoveis {
                 + quantidade
                 + ", Desconto: "
                 + porcentagemDesconto.ToString("F1", CultureInfo.InvariantCulture)
-                + "%, Subtotal: ";
+                + "%, Subtotal: "
+                + subTotal().ToString("F2", CultureInfo.InvariantCulture);
         }
 
+        public double subTotal() {
+            double precoProduto = 0;
+            for(int i = 0; i < Program.produtos.Count; i++) {
+                if (codigoProduto == Program.produtos[i].codigo) {
+                    precoProduto = Program.produtos[i].preco;
+                }
+            }
+            return quantidade * precoProduto * (1 - porcentagemDesconto / 100);
+        }
     }
 }

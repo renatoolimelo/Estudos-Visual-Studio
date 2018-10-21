@@ -78,20 +78,22 @@ namespace CadastroMoveis {
             }
             Console.WriteLine(Program.pedidos[pos]);
             Console.WriteLine("Itens: ");
+            double total = 0;
             for (int i = 0; i < Program.itensPedido.Count; i++) {
                 if (Program.pedidos[pos].codigo == Program.itensPedido[i].codigoPedido) {
                     for (int j = 0; j < Program.produtos.Count; j++) {
                         if (Program.itensPedido[i].codigoProduto == Program.produtos[j].codigo) {
                             Console.Write(Program.produtos[j].descricao
                                 + ", Preço: "
-                                + Program.produtos[j].preco);
+                                + Program.produtos[j].preco.ToString("F2", CultureInfo.InvariantCulture));
                         }
                     }
                     Console.WriteLine(Program.itensPedido[i]);
+                    total += Program.itensPedido[i].subTotal();
                 }
             }
-
+            Console.Write("Total do pedido: ");
+            Console.WriteLine(total.ToString("F2", CultureInfo.InvariantCulture));
         }
-
     }
 }
