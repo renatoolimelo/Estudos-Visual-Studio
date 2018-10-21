@@ -83,6 +83,23 @@ namespace CadastroFilme {
             }
             Console.WriteLine(Program.filmes[posFilme]);
             Console.WriteLine("Participações:");
+            double custoTotal = 0;
+            for (int i = 0; i < Program.participacoes.Count; i++) {
+                if (Program.filmes[posFilme].codigo == Program.participacoes[i].codigoFilme) {
+                    for (int j = 0; j < Program.artistas.Count; j++) {
+                        if (Program.participacoes[i].codigoArtista == Program.artistas[j].codigo) {
+                            Console.Write(Program.artistas[j].nome
+                                + ", Cachê: "
+                                + Program.artistas[j].cache.ToString("F2", CultureInfo.InvariantCulture)
+                                + ", Desconto: ");
+                        }
+                    }
+                    custoTotal += Program.participacoes[i].custo();
+                    Console.WriteLine(Program.participacoes[i]);
+                }
+            }
+            Console.Write("Custo total do filme: ");
+            Console.WriteLine(custoTotal.ToString("F2", CultureInfo.InvariantCulture));
         }
     }
 }
