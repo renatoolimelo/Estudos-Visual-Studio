@@ -14,5 +14,10 @@
         public Peca peca(int linha, int coluna) {
             return pecas[linha, coluna];
         }
+
+        public void colocarPeca(Peca P, Posicao pos) {
+            pecas[pos.linha, pos.coluna] = P;
+            P.posicao = pos;
+        }
     }
 }
